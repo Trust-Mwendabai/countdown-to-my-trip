@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trust's Journey to Mongu</title>
+    <style>
+        :root {
+            --primary-color: #1e3c72;
+            --secondary-color: #2a5298;
+            --text-color: #ffffff;
+            --block-bg: rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="sunset"] {
+            --primary-color: #ff512f;
+            --secondary-color: #dd2476;
+            --text-color: #ffffff;
+            --block-bg: rgba(255, 255, 255, 0.25);
+        }
+
+        [data-theme="forest"] {
+            --primary-color: #134e5e;
+            --secondary-color: #71b280;
+            --text-color: #ffffff;
+            --block-bg: rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="night"] {
+            --primary-color: #0f2027;
+            --secondary-color: #2c5364;
+            --text-color: #ffffff;
+            --block-bg: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-color);
+            transition: all 0.5s ease;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            max-width: 800px;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        .theme-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .theme-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            background: var(--block-bg);
+            color: var(--text-color);
+            backdrop-filter: blur(5px);
+            font-size: 14px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .time-block {
+            background: var(--block-bg);
+            padding: 15px;
+            border-radius: 15px;
+            min-width: 100px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .label {
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bio {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        .journey-details {
+            margin: 20px 0;
+            font-size: 1.2em;
+            padding: 15px;
+            background: var(--block-bg);
+            border-radius: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin: 15px 0;
+        }
+
+        .theme-info {
+            font-size: 0.9em;
+            color: var(--text-color);
+            opacity: 0.9;
+            margin: 5px 0 15px 0;
+            padding: 5px;
+            background: var(--block-bg);
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                width: 95%;
+                padding: 15px;
+                margin: 10px auto;
+            }
+
+            .theme-switcher {
+                gap: 5px;
+                margin-bottom: 15px;
+            }
+
+            .theme-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .countdown {
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            .time-block {
+                min-width: 70px;
+                padding: 10px;
+                flex: 1;
+                min-width: calc(50% - 20px);
+                max-width: calc(50% - 20px);
+            }
+
+            .number {
+                font-size: 2em;
+            }
+
+            .label {
+                font-size: 0.9em;
+            }
+
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+                margin: 10px 0;
+            }
+
+            .bio {
+                font-size: 0.9em;
+                padding: 10px;
+                margin: 10px 0;
+            }
+
+            .journey-details {
+                font-size: 1em;
+                padding: 10px;
+                margin: 15px 0;
+            }
+
+            .theme-info {
+                font-size: 0.8em;
+                padding: 5px 10px;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 320px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .time-block {
+                min-width: calc(50% - 15px);
+                max-width: calc(50% - 15px);
+            }
+
+            .number {
+                font-size: 1.8em;
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .theme-btn {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    
+    <div class="container">
+        <div class="journey-details">
+            <p> 🚗 Lusaka Mongu Holiday Journey countdown</p>
+        </div>
+         <div class="theme-switcher">
+            <div class="theme-info">
+                ✨ Click buttons below to change color theme
+            </div>
+            <button class="theme-btn" onclick="setTheme('default')">Ocean</button>
+            <button class="theme-btn" onclick="setTheme('sunset')">Sunset</button>
+            <button class="theme-btn" onclick="setTheme('forest')">Forest</button>
+            <button class="theme-btn" onclick="setTheme('night')">Night</button>
+        </div>
+        <div class="countdown">
+            <div class="time-block">
+                <div class="number" id="days">00</div>
+                <div class="label">Days</div>
+            </div>
+            <div class="time-block">
+                <div class="number" id="hours">00</div>
+                <div class="label">Hours</div>
+            </div>
+            <div class="time-block">
+                <div class="number" id="minutes">00</div>
+                <div class="label">Minutes</div>
+            </div>
+            <div class="time-block">
+                <div class="number" id="seconds">00</div>
+                <div class="label">Seconds</div>
+            </div>
+        </div>
+
+        <div class="profile">
+            <div class="profile-img">
+                <img src="2020-06-28-13-10-14-175.jpg" alt="Trust Muhau Mwendabai">
+            </div>
+            <h1>Trust Muhau Mwendabai</h1>
+            <div class="bio">
+                The first grandson among 15 grandchildren of Mr. Albert Mushiba, 
+                embarking on a special holiday journey from Lusaka to Mongu.
+            </div>
+        </div>
+        
+        
+    </div>
+
+    <script>
+        function setTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+        }
+
+        // Set the date we're counting down to
+        const countDownDate = new Date('December 14, 2024 00:00:00').getTime();
+
+        function updateCountdown() {
+            // Get today's date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            const distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+            // If the countdown is finished, display expired message
+            if (distance < 0) {
+                clearInterval(x);
+                document.querySelector('.countdown').innerHTML = "<h2>The trip has begun!</h2>";
+            }
+        }
+
+        // Update the countdown every second
+        updateCountdown();
+        const x = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
